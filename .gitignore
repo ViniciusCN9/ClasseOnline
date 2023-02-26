@@ -448,6 +448,7 @@ dist
 .svelte-kit
 
 ### VisualStudioCode ###
+Frontend/.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -714,5 +715,8 @@ FodyWeavers.xsd
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
+
+# Others
+html
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,dotnetcore,aspnetcore,angular,node,visualstudio
