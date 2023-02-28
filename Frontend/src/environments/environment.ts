@@ -1,4 +1,4 @@
 export const environment = {
   apiUrl: "http://localhost:5001",
-  loginRoute: "api/auth"
+  loginRoute: "api/auth/login"
 };

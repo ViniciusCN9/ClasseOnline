@@ -31,31 +31,21 @@ export class LoginComponent implements OnInit {
     this.carregando = true
     this.httpService.postLogin(this.formLogin.get("usuario")?.value, this.formLogin.get("senha")?.value)
       .subscribe(
-        response => {
+        (response) => {
           this.carregando = false
-          let mockResponse = {
-            sucesso: true,
-            usuario: this.formLogin.get("usuario")?.value,
-            funcao: 1,
-            token: "token"
+
+          if (!response.sucesso) {
+            this.usuarioInvalido = true
+            return
           }
 
-          Security.setAutenticado(mockResponse.token, mockResponse.usuario, mockResponse.funcao)
+          Security.setAutenticado(response.token, response.usuario, response.funcao)
           this.router.navigate(["/home"])
         },
         error => {
           this.carregando = false
-          let mockResponse = {
-            sucesso: true,
-            usuario: "usuario",
-            funcao: 1,
-            token: "token"
-          }
-          
-          Security.setAutenticado(mockResponse.token, mockResponse.usuario, mockResponse.funcao)
-          this.router.navigate(["/home"])
-
-          // this.usuarioInvalido = true
+          console.log(error)
+          this.usuarioInvalido = true
         });
   }
 

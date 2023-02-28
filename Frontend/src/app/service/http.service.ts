@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { LoginResponse } from '../models/loginResponseModel';
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {
@@ -10,6 +11,6 @@ export class HttpService {
     constructor(private httpClient: HttpClient) { }
 
     postLogin(usuario: string, senha: string) {
-        return this.httpClient.post(`${this.API_URL}/${this.LOGIN_ROUTE}`, {usuario: usuario, senha: senha})
+        return this.httpClient.post<LoginResponse>(`${this.API_URL}/${this.LOGIN_ROUTE}`, { usuario: usuario, senha: senha })
     }
 }
