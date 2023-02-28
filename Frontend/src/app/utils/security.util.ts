@@ -1,16 +1,16 @@
 export class Security {
-    public static setAuthenticate(token: string, username: string, role: number) {
+    public static setAutenticado(token: string, usuario: string, funcao: number) {
         localStorage.setItem('token', token);
-        localStorage.setItem('username', btoa(username))
-        localStorage.setItem('role', btoa(role.toString()))
+        localStorage.setItem('usuario', btoa(usuario))
+        localStorage.setItem('funcao', btoa(funcao.toString()))
     }
 
-    public static isAuthenticated(): boolean {
+    public static autenticado(): boolean {
         const token: string | null = this.getToken();
-        const username: string | null = this.getUsername();
-        const role: number | null = this.getRole();
+        const usuario: string | null = this.getUsuario();
+        const funcao: number | null = this.getFuncao();
 
-        if (token != null && username != null && role != null) {
+        if (token != null && usuario != null && funcao != null) {
             return true;
         }
         return false;
@@ -20,15 +20,15 @@ export class Security {
         return localStorage.getItem('token');
     }
 
-    public static getUsername() {
-        return atob(localStorage.getItem('username')!);
+    public static getUsuario() {
+        return atob(localStorage.getItem('usuario')!);
     }
 
-    public static getRole() {
-        return parseInt(atob(localStorage.getItem('role')!));
+    public static getFuncao() {
+        return parseInt(atob(localStorage.getItem('funcao')!));
     }
 
-    public static clear() {
+    public static limpar() {
         return localStorage.clear()
     }
 }
