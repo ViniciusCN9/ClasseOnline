@@ -15,6 +15,8 @@ import { LoadComponent } from './shared/load/load.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfessorComponent } from './pages/professor/professor.component';
+import { AlunoComponent } from './pages/aluno/aluno.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NotFoundComponent,
     LoadComponent,
     NavbarComponent,
-    RecuperarSenhaComponent
+    RecuperarSenhaComponent,
+    ProfessorComponent,
+    AlunoComponent
   ],
   imports: [
     BrowserModule,

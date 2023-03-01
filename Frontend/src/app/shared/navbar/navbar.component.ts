@@ -16,6 +16,10 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if (!Security.autenticado()) {
+      this.router.navigate([""])
+    }
+
     this.usuario = Security.getUsuario()
     this.funcao = Security.getFuncao()
   }

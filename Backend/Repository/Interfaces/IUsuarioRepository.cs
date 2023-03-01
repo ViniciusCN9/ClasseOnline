@@ -2,8 +2,9 @@ using Models.Entities;
 
 namespace Repository.Interfaces
 {
-    public interface IAuthRepository
+    public interface IUsuarioRepository
     {
         Usuario BuscarUsuario(string nome, string senha);
+        string[] BuscarClassses(int usuarioId);
     }
 }

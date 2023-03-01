@@ -1,0 +1,26 @@
+<div class="container mt-4">
+    <button class="btn btn-primary" (click)="abrirModal(evento)">Nova classe</button>
+    <hr class="w-100">
+    <div class="alert alert-warning" id="alerta" role="alert">
+        Nenhuma classe encontrada!
+    </div>
+</div>
+
+<ng-template #evento let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Nova classe</h4>
+		<button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="formClasse" class="d-flex flex-column justify-content-center w-75">
+            <div class="form-group mb-3">
+                <label for="nome">Nome</label>
+                <input formControlName="nome"  type="text" class="form-control mt-1" id="nome" placeholder="Ex. Matemática">
+            </div>
+        </form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancelar</button>
+		<button type="button" class="btn btn-success" (click)="modal.close()">Salvar</button>
+	</div>
+</ng-template>

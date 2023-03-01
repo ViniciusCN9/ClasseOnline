@@ -4,16 +4,16 @@ import { Security } from 'src/app/utils/security.util';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+  public funcao = 0;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if (!Security.autenticado()) {
-      this.router.navigate([""])
-    }
+    this.funcao = Security.getFuncao()
   }
+
+
 }

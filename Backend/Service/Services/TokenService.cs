@@ -28,7 +28,8 @@ namespace Service.Services
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("Usuario", usuario.Nome),
+                        new Claim(ClaimTypes.Sid, usuario.Id.ToString()),
+                        new Claim(ClaimTypes.Name, usuario.Nome),
                         new Claim(ClaimTypes.Role, usuario.Funcao.ToString())
 
                     }),
