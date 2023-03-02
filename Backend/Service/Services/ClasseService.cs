@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Models.Entities;
 using Repository.Interfaces;
 using Service.Interfaces;
+using Service.Utils;
 
 namespace Service.Services
 {
@@ -22,5 +23,14 @@ namespace Service.Services
             return _classeRepository.CarregarClasses(codigos);
         }
 
+        public Classe CriarClasse(string nome)
+        {
+            var codigo = GeradorCodigoClasseUtil.GerarCodigoClasse();
+            var classe = new Classe() { Codigo = codigo, Nome = nome };
+
+            _classeRepository.CriarClasse(classe);
+
+            return classe;
+        }
     }
 }

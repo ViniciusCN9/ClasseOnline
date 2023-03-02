@@ -26,9 +26,9 @@ namespace Repository.Repositories
             return resposta;
         }
 
-        public string CriarClasse(string nome)
+        public void CriarClasse(Classe classe)
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void AtualizarClasse(string codigo, string nome)

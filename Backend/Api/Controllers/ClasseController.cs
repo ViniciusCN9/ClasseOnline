@@ -36,5 +36,21 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        [Authorize(Roles = "PROFESSOR, ALUNO")]
+        public IActionResult PostClasses([FromBody] string nome)
+        {
+            try
+            {
+                var usuarioId = Convert.ToInt16(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
+                var response = _classeService.CarregarClasses(usuarioId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
