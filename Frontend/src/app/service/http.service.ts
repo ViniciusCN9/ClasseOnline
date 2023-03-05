@@ -21,6 +21,18 @@ export class HttpService {
         return this.httpClient.get<Classe[]>(`${this.API_URL}/${this.CLASSE_ROUTE}`, this.getHeaders())
     }
 
+    postClasse(nome: string) {
+        return this.httpClient.post<Classe>(`${this.API_URL}/${this.CLASSE_ROUTE}/${nome}`, {}, this.getHeaders())
+    }
+
+    updateClasse(codigo: string, nome: string) {
+        return this.httpClient.put(`${this.API_URL}/${this.CLASSE_ROUTE}/${codigo}/${nome}`, {}, this.getHeaders())
+    }
+
+    deleteClasse(codigo: string) {
+        return this.httpClient.delete(`${this.API_URL}/${this.CLASSE_ROUTE}/${codigo}`, this.getHeaders())
+    }
+
     private getHeaders() {
         return {
             headers: {

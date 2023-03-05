@@ -1,10 +1,22 @@
 [
-    {
-        "codigo": "apxm-slif-hwyu-nfps",
-        "nome": "FISICA I"
-    },
-    {
-        "codigo": "apxm-slif-hwyu-nfps",
-        "nome": "MATEMÁTICA"
-    }
+  {
+    "Codigo": "apxm-slif-hwyu-nfps",
+    "Nome": "FÍSICA"
+  },
+  {
+    "Codigo": "lonv-imjn-awum-udiw",
+    "Nome": "MATEMÁTICA"
+  },
+  {
+    "Codigo": "xrcw-mmml-qzem-vbir",
+    "Nome": "CALCULO II"
+  },
+  {
+    "Codigo": "pudv-obbv-rolw-ulsq",
+    "Nome": "LITERATURA"
+  },
+  {
+    "Codigo": "ledw-zhrs-reyd-viyv",
+    "Nome": "LÍNGUA PORTUGUESA"
+  }
 ]

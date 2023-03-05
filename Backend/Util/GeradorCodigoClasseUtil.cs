@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Text;
 
-namespace Service.Utils
+namespace Utils
 {
     public static class GeradorCodigoClasseUtil
     {

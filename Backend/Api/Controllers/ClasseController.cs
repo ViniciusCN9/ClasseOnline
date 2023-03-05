@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,15 +38,45 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
-        [Authorize(Roles = "PROFESSOR, ALUNO")]
-        public IActionResult PostClasses([FromBody] string nome)
+        [HttpPost("{nome}")]
+        [Authorize(Roles = "PROFESSOR")]
+        public IActionResult PostClasse([FromRoute] string nome)
         {
             try
             {
                 var usuarioId = Convert.ToInt16(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
-                var response = _classeService.CarregarClasses(usuarioId);
+                var response = _classeService.CriarClasse(HttpUtility.UrlDecode(nome), usuarioId);
                 return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{codigo}/{nome}")]
+        [Authorize(Roles = "PROFESSOR")]
+        public IActionResult UpdateClasse([FromRoute] string codigo, [FromRoute] string nome)
+        {
+            try
+            {
+                _classeService.AtualizarClasse(codigo, HttpUtility.UrlDecode(nome));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{codigo}")]
+        [Authorize(Roles = "PROFESSOR")]
+        public IActionResult DeleteClasse([FromRoute] string codigo)
+        {
+            try
+            {
+                _classeService.RemoverClasse(codigo);
+                return Ok();
             }
             catch (Exception ex)
             {

@@ -1,32 +1,37 @@
 [
-    {
-        "id": 1,
-        "nome": "professor1",
-        "senha": "professor",
-        "funcao": "1",
-        "classes": [
-            "apxm-slif-hwyu-nfps"
-        ]
-    },
-    {
-        "id": 2,
-        "nome": "professor2",
-        "senha": "professor",
-        "funcao": "1",
-        "classes": []
-    },
-    {
-        "id": 3,
-        "nome": "aluno1",
-        "senha": "aluno",
-        "funcao": "2",
-        "classes": []
-    },
-    {
-        "id": 4,
-        "nome": "aluno2",
-        "senha": "aluno",
-        "funcao": "2",
-        "classes": []
-    }
+  {
+    "Nome": "professor1",
+    "Senha": "professor",
+    "Funcao": 1,
+    "Classes": [
+      "apxm-slif-hwyu-nfps",
+      "lonv-imjn-awum-udiw",
+      "xrcw-mmml-qzem-vbir"
+    ],
+    "Id": 1
+  },
+  {
+    "Nome": "professor2",
+    "Senha": "professor",
+    "Funcao": 1,
+    "Classes": [
+      "pudv-obbv-rolw-ulsq",
+      "ledw-zhrs-reyd-viyv"
+    ],
+    "Id": 2
+  },
+  {
+    "Nome": "aluno1",
+    "Senha": "aluno",
+    "Funcao": 2,
+    "Classes": [],
+    "Id": 3
+  },
+  {
+    "Nome": "aluno2",
+    "Senha": "aluno",
+    "Funcao": 2,
+    "Classes": [],
+    "Id": 4
+  }
 ]

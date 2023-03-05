@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { HttpService } from 'src/app/service/http.service';
 import { Security } from 'src/app/utils/security.util';
 
@@ -12,9 +13,8 @@ import { Security } from 'src/app/utils/security.util';
 export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
   public carregando = false;
-  public usuarioInvalido = false;
 
-  constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private notifierService: NotifierService, private httpService: HttpService, private formBuilder: FormBuilder, private router: Router) {
     this.formLogin = this.formBuilder.group({
       usuario: [""],
       senha: [""]
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.carregando = false
 
           if (!response.sucesso) {
-            this.usuarioInvalido = true
+            this.notifierService.notify("error", "Usuário ou senha inválidos!")
             return
           }
 
@@ -44,8 +44,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.carregando = false
-          console.log(error)
-          this.usuarioInvalido = true
+          this.notifierService.notify("error", "Houve um erro ao fazer login!")
         });
   }
 

@@ -1,41 +1,82 @@
 <div class="container mt-4">
-    <button class="btn btn-primary" (click)="abrirModal(evento)">Nova classe</button>
+    <button class="btn btn-primary" (click)="inserirClasseModal(inserirModal)">Nova classe</button>
     <hr class="w-100">
     <div *ngIf="classes.length == 0" class="alert alert-warning" id="alerta" role="alert">
         Nenhuma classe encontrada!
     </div>
 	<div class="list-group">
-		<a *ngFor="let classe of classes" href="#" class="list-group-item flex-column align-items-start">
+		<div *ngFor="let classe of classes" class="list-group-item flex-column align-items-start">
 			<div class="d-flex w-100 justify-content-between align-items-center p-1">
-				<h5 class="mb-1">{{classe.nome}}</h5>
+				<a href="#" class="text-decoration-none text-dark">
+					<h5 class="mb-1">{{classe.nome}}</h5>
+				</a>
 				<div>
-					<button type="button" class="btn btn-warning btn-sm mx-2">
+					<button type="button" class="btn btn-warning btn-sm mx-2" (click)="atualizarClasseModal(atualizarModal, classe)">
 						<fa-icon [icon]="iconeUpdate" size="lg"></fa-icon>
 					</button>
-					<button type="button" class="btn btn-danger btn-sm">
+					<button type="button" class="btn btn-danger btn-sm" (click)="deletarClasseModal(deletarModal, classe.codigo)">
 						<fa-icon [icon]="iconeDelete" size="lg"></fa-icon>
 					</button>
 				</div>
 			</div>
-		</a>
+
+			<ng-template #atualizarModal let-atualizarModal>
+				<div class="modal-header">
+					<h4 class="modal-title" id="modal-basic-title">Atualizar classe</h4>
+					<button type="button" class="btn-close" (click)="atualizarModal.dismiss()"></button>
+				</div>
+				<div class="modal-body">
+					<form [formGroup]="formAtualizarClasse" class="d-flex flex-column justify-content-center w-75">
+						<div class="form-group mb-3">
+							<label for="novoNome">Nome</label>
+							<input formControlName="novoNome" type="text" class="form-control mt-1" id="novoNome" placeholder="Ex. Matemática">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" (click)="atualizarModal.dismiss()">Cancelar</button>
+					<button type="button" class="btn btn-success" (click)="atualizarModal.close()">Salvar</button>
+				</div>
+			</ng-template>
+
+			<ng-template #deletarModal let-deletarModal>
+				<div class="modal-header">
+					<h4 class="modal-title" id="modal-basic-title">Deletar classe</h4>
+					<button type="button" class="btn-close" (click)="deletarModal.dismiss()"></button>
+				</div>
+				<div class="modal-body">
+					<form [formGroup]="formDeletarClasse" class="d-flex flex-column justify-content-center w-75">
+						<div class="form-group">
+							<p class="text-nowrap my-0">Para confirmar a remoção do item "{{classe.nome}}" digite:</p>
+							<p class="mt-0 mb-3"><i><strong>{{textoExclusao}}</strong></i></p>
+							<input formControlName="confirmacao"  type="text" class="form-control mt-1" id="confirmacao" [placeholder]="textoExclusao">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" (click)="deletarModal.dismiss()">Cancelar</button>
+					<button type="button" class="btn btn-success" (click)="deletarModal.close()">Salvar</button>
+				</div>
+			</ng-template>
+		</div>
 	</div>
 </div>
 
-<ng-template #evento let-modal>
+<ng-template #inserirModal let-inserirModal>
 	<div class="modal-header">
 		<h4 class="modal-title" id="modal-basic-title">Nova classe</h4>
-		<button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+		<button type="button" class="btn-close" (click)="inserirModal.dismiss()"></button>
 	</div>
 	<div class="modal-body">
-		<form [formGroup]="formClasse" class="d-flex flex-column justify-content-center w-75">
+		<form [formGroup]="formInserirClasse" class="d-flex flex-column justify-content-center w-75">
             <div class="form-group mb-3">
                 <label for="nome">Nome</label>
-                <input formControlName="nome"  type="text" class="form-control mt-1" id="nome" placeholder="Ex. Matemática">
+                <input formControlName="nome" type="text" class="form-control mt-1" id="nome" placeholder="Ex. Matemática">
             </div>
         </form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancelar</button>
-		<button type="button" class="btn btn-success" (click)="modal.close()">Salvar</button>
+		<button type="button" class="btn btn-danger" (click)="inserirModal.dismiss()">Cancelar</button>
+		<button type="button" class="btn btn-success" (click)="inserirModal.close()">Salvar</button>
 	</div>
 </ng-template>

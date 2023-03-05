@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Models.Entities;
 
 namespace Repository.Interfaces
@@ -5,6 +6,8 @@ namespace Repository.Interfaces
     public interface IUsuarioRepository
     {
         Usuario BuscarUsuario(string nome, string senha);
-        string[] BuscarClassses(int usuarioId);
+        List<string> BuscarClassses(int usuarioId);
+        void RegistrarClasse(string codigo, int usuarioId);
+        void DesregistrarClasse(string codigo);
     }
 }

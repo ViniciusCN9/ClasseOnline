@@ -13,11 +13,6 @@
             </div>
             <button type="submit" class="btn btn-primary w-50 align-self-center mb-3">Entrar</button>
         </form>
-        <div *ngIf="usuarioInvalido">
-            <ngb-alert [type]="'danger'" [dismissible]="false" class="text-center">
-                <strong>Erro!</strong> Usuário ou senha inválidos.
-            </ngb-alert>
-        </div>
 
         <!-- Implementação futura - d-flex -->
         <div class="d-none justify-content-between mt-3">

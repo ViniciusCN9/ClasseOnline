@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~angular-notifier/styles";
 
 * {
     margin: 0;
@@ -16,4 +17,8 @@ body {
 hr {
     width: 80%;
     height: 3px;
+}
+
+a :hover {
+    color: #0d6efd;
 }

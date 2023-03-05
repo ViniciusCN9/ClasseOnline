@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Models.Enum;
 
 namespace Models.Entities
@@ -7,6 +8,6 @@ namespace Models.Entities
         public string Nome { get; set; }
         public string Senha { get; set; }
         public Role Funcao { get; set; }
-        public string[] Classes { get; set; }
+        public List<string> Classes { get; set; }
     }
 }
