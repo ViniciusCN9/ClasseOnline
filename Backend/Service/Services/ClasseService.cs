@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Models.Entities;
 using Repository.Interfaces;
@@ -17,13 +18,22 @@ namespace Service.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public List<Classe> CarregarClasses(int usuarioId)
+        public List<Classe> CarregarClasses(Guid usuarioId)
         {
             var codigos = _usuarioRepository.BuscarClassses(usuarioId);
             return _classeRepository.CarregarClasses(codigos);
         }
 
-        public Classe CriarClasse(string nome, int usuarioId)
+        public Classe CarregarClasse(string codigo, Guid usuarioId)
+        {
+            var resposta = new Classe();
+            if (_usuarioRepository.VerificarClasse(codigo, usuarioId))
+                resposta = _classeRepository.CarregarClasse(codigo);
+
+            return resposta;
+        }
+
+        public Classe CriarClasse(string nome, Guid usuarioId)
         {
             var codigo = GeradorCodigoClasseUtil.GerarCodigoClasse();
             var classe = new Classe() { Codigo = codigo, Nome = nome };
@@ -34,8 +44,12 @@ namespace Service.Services
             return classe;
         }
 
-        public void AtualizarClasse(string codigo, string nome) =>
-            _classeRepository.AtualizarClasse(codigo, nome);
+        public void AtualizarClasse(string codigo, string nome)
+        {
+            var classe = _classeRepository.CarregarClasse(codigo);
+            classe.Nome = nome;
+            _classeRepository.AtualizarClasse(classe);
+        }
 
         public void RemoverClasse(string codigo)
         {

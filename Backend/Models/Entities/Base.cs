@@ -1,7 +1,9 @@
+using System;
+
 namespace Models.Entities
 {
     public abstract class Base
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
     }
 }

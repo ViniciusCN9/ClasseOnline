@@ -18,6 +18,8 @@ import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfessorComponent } from './pages/professor/professor.component';
 import { AlunoComponent } from './pages/aluno/aluno.component';
+import { PostagensComponent } from './pages/postagens/postagens.component';
+import { AtividadesComponent } from './pages/atividades/atividades.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AlunoComponent } from './pages/aluno/aluno.component';
     NavbarComponent,
     RecuperarSenhaComponent,
     ProfessorComponent,
-    AlunoComponent
+    AlunoComponent,
+    PostagensComponent,
+    AtividadesComponent
   ],
   imports: [
     BrowserModule,

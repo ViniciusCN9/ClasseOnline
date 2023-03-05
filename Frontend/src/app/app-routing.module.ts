@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'classe', component: ClasseComponent },
+  { path: 'classe/:codigo', component: ClasseComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

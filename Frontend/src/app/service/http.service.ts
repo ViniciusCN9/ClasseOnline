@@ -17,8 +17,12 @@ export class HttpService {
         return this.httpClient.post<LoginResponse>(`${this.API_URL}/${this.AUTH_ROUTE}/login`, { usuario: usuario, senha: senha })
     }
 
-    getClasse() {
+    getClasses() {
         return this.httpClient.get<Classe[]>(`${this.API_URL}/${this.CLASSE_ROUTE}`, this.getHeaders())
+    }
+
+    getClasse(codigo: string) {
+        return this.httpClient.get<Classe>(`${this.API_URL}/${this.CLASSE_ROUTE}/${codigo}`, this.getHeaders())
     }
 
     postClasse(nome: string) {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Models.Entities;
 using Newtonsoft.Json;
@@ -37,6 +38,19 @@ namespace Repository.Repositories
             return resposta;
         }
 
+        public Classe CarregarClasse(string codigo)
+        {
+            var resposta = new Classe();
+            var classes = JsonUtil.CarregarEntidadeJson<Classe>(caminho);
+            foreach (var classe in classes)
+            {
+                if (classe.Codigo == codigo)
+                    resposta = classe;
+            }
+
+            return resposta;
+        }
+
         public void CriarClasse(Classe classe)
         {
             var classes = JsonUtil.CarregarEntidadeJson<Classe>(caminho);
@@ -44,14 +58,18 @@ namespace Repository.Repositories
             JsonUtil.EscreverEntidadeJson<Classe>(classes, caminho);
         }
 
-        public void AtualizarClasse(string codigo, string nome)
+        public void AtualizarClasse(Classe classeAtualizada)
         {
             var classesAtualizadas = new List<Classe>();
             var classes = JsonUtil.CarregarEntidadeJson<Classe>(caminho);
             foreach (var classe in classes)
             {
-                if (classe.Codigo == codigo)
-                    classe.Nome = nome;
+                if (classe.Codigo == classeAtualizada.Codigo)
+                {
+                    classe.Nome = classeAtualizada.Nome;
+                    classe.Postagens = classeAtualizada.Postagens;
+                    classe.Atividades = classeAtualizada.Atividades;
+                }
 
                 classesAtualizadas.Add(classe);
             }

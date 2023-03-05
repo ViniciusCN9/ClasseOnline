@@ -21,7 +21,7 @@ export class ProfessorComponent implements OnInit {
   public classes: Classe[] = []
   public textoExclusao = "excluir permanentemente"
 
-  constructor(private notifierService: NotifierService, private modalService: NgbModal, private httpService: HttpService, private formBuilder: FormBuilder,) {
+  constructor(private notifierService: NotifierService, private modalService: NgbModal, private httpService: HttpService, private formBuilder: FormBuilder) {
     this.formInserirClasse = this.formBuilder.group({
       nome: [""]
     })
@@ -35,7 +35,7 @@ export class ProfessorComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregando = true
-    this.httpService.getClasse()
+    this.httpService.getClasses()
       .subscribe(
         (response) => {
           this.carregando = false

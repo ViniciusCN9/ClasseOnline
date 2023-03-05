@@ -26,14 +26,27 @@ namespace Repository.Repositories
             return usuarios.Find(e => e.Nome == nome && e.Senha == senha);
         }
 
-        public List<string> BuscarClassses(int usuarioId)
+        public List<string> BuscarClassses(Guid usuarioId)
         {
             var usuarios = JsonUtil.CarregarEntidadeJson<Usuario>(caminho);
             var usuario = usuarios.FirstOrDefault(e => e.Id == usuarioId);
             return usuario.Classes;
         }
 
-        public void RegistrarClasse(string codigo, int usuarioId)
+        public bool VerificarClasse(string codigo, Guid usuarioId)
+        {
+            var resposta = false;
+            var usuarios = JsonUtil.CarregarEntidadeJson<Usuario>(caminho);
+            foreach (var usuario in usuarios)
+            {
+                if (usuario.Id == usuarioId)
+                    resposta = usuario.Classes.Contains(codigo);
+
+            }
+            return resposta;
+        }
+
+        public void RegistrarClasse(string codigo, Guid usuarioId)
         {
             var usuariosAtualizados = new List<Usuario>();
             var usuarios = JsonUtil.CarregarEntidadeJson<Usuario>(caminho);

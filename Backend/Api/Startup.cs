@@ -84,9 +84,13 @@ namespace Api
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IClasseService, ClasseService>();
+            services.AddScoped<IPostagemService, PostagemService>();
+            services.AddScoped<IAnexoService, AnexoService>();
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IClasseRepository, ClasseRepository>();
+            services.AddScoped<IPostagemRepository, PostagemRepository>();
+            services.AddScoped<IAnexoRepository, AnexoRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

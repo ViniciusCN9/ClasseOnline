@@ -28,8 +28,27 @@ namespace Api.Controllers
         {
             try
             {
-                var usuarioId = Convert.ToInt16(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
+                var usuarioId = Guid.Parse(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
                 var response = _classeService.CarregarClasses(usuarioId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{codigo}")]
+        [Authorize(Roles = "PROFESSOR, ALUNO")]
+        public IActionResult GetClasse([FromRoute] string codigo)
+        {
+            try
+            {
+                var usuarioId = Guid.Parse(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
+                var response = _classeService.CarregarClasse(codigo, usuarioId);
+                if (String.IsNullOrEmpty(response.Codigo))
+                    return BadRequest();
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -44,7 +63,7 @@ namespace Api.Controllers
         {
             try
             {
-                var usuarioId = Convert.ToInt16(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
+                var usuarioId = Guid.Parse(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
                 var response = _classeService.CriarClasse(HttpUtility.UrlDecode(nome), usuarioId);
                 return Ok(response);
             }

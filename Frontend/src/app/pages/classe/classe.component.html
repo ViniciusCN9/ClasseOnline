@@ -1,1 +1,14 @@
-<p>classe works!</p>
+<app-navbar></app-navbar>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between">
+        <div>
+            <button [routerLink]="['/home']" class="btn btn-dark">Voltar</button>
+            <button class="btn btn-dark ms-2" (click)="exibirPostagens()">Postagens</button>
+            <button class="btn btn-dark ms-2" (click)="exibirAtividades()">Atividades</button>
+        </div>
+        <h4>{{classe.nome}}</h4>
+    </div>
+    <hr class="w-100">
+    <app-postagens *ngIf="exibicao == 1"></app-postagens>
+    <app-atividades *ngIf="exibicao == 2"></app-atividades>
+</div>
