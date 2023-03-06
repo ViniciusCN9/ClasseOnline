@@ -14,7 +14,7 @@ import { Security } from 'src/app/utils/security.util';
 export class ClasseComponent implements OnInit {
   public funcao = 0
   public codigo: string = ""
-  public classe: Classe = new Classe("", "")
+  public classe: Classe = new Classe("", "", [], [])
   public exibicao = 0
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpService: HttpService) { }

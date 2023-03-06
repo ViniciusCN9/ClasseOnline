@@ -1,22 +1,34 @@
 [
   {
     "Codigo": "apxm-slif-hwyu-nfps",
-    "Nome": "FÍSICA"
+    "Nome": "FÍSICA",
+    "Postagens": [
+      "9d609f4f-44e2-47d5-8473-a98482f96c71"
+    ],
+    "Atividades": []
   },
   {
     "Codigo": "lonv-imjn-awum-udiw",
-    "Nome": "MATEMÁTICA"
+    "Nome": "MATEMÁTICA",
+    "Postagens": [],
+    "Atividades": []
   },
   {
     "Codigo": "xrcw-mmml-qzem-vbir",
-    "Nome": "CALCULO II"
+    "Nome": "CALCULO II",
+    "Postagens": [],
+    "Atividades": []
   },
   {
     "Codigo": "pudv-obbv-rolw-ulsq",
-    "Nome": "LITERATURA"
+    "Nome": "LITERATURA",
+    "Postagens": [],
+    "Atividades": []
   },
   {
     "Codigo": "ledw-zhrs-reyd-viyv",
-    "Nome": "LÍNGUA PORTUGUESA"
+    "Nome": "LÍNGUA PORTUGUESA",
+    "Postagens": [],
+    "Atividades": []
   }
 ]

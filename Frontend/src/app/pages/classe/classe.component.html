@@ -9,6 +9,6 @@
         <h4>{{classe.nome}}</h4>
     </div>
     <hr class="w-100">
-    <app-postagens *ngIf="exibicao == 1"></app-postagens>
-    <app-atividades *ngIf="exibicao == 2"></app-atividades>
+    <app-postagens *ngIf="exibicao == 1" [funcao]="funcao" [classe]="classe"></app-postagens>
+    <!-- <app-atividades *ngIf="exibicao == 2" [funcao]="funcao" [classe]="classe"></app-atividades> -->
 </div>

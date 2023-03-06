@@ -30,6 +30,8 @@ namespace Service.Services
             return _anexoRepository.CarregarAnexos(postagens.Anexos);
         }
 
+        public Anexo CarregarAnexo(Guid id) => _anexoRepository.CarregarAnexo(id);
+
         public async void AdicionarAnexo(IFormFile arquivo)
         {
             var nome = arquivo.FileName;

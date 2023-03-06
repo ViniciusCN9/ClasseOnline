@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "Timestamp": 1678045310,
+    "Usuario": "c04340ab-3aa7-476d-ae0f-35d155057abe",
+    "Titulo": "Teste",
+    "Texto": "Postagem de teste",
+    "Anexos": [
+      "399afe07-2bcb-430c-8221-f8bcc1549d8f"
+    ],
+    "Id": "9d609f4f-44e2-47d5-8473-a98482f96c71"
+  }
+]
