@@ -10,7 +10,10 @@
         <div role="button" (click)="collapse.toggle(); carregarAnexos(postagem.id)">
             <div class="d-flex w-100 justify-content-between align-items-center p-1">
                 <h5 class="mb-1">{{postagem.titulo}}</h5>
-                <small><strong>{{postagem.timestamp * 1000 | date:'dd/MM/YYYY'}}</strong></small>
+                <div class="d-flex justify-content-between" (click)="collapse.toggle()">
+                    <small class="mx-2"><strong>{{postagem.timestamp * 1000 | date:'dd/MM/YYYY'}}</strong></small>
+                    <fa-icon role="button" class="text-danger" [icon]="iconRemoverArquivo" size="lg" (click)="removerConteudo(removerModal, postagem.id)"></fa-icon>
+                </div>
             </div>
             <div class="d-flex w-100 justify-content-between align-items-center p-1">
                 <p>{{postagem.texto}}</p>
@@ -29,6 +32,24 @@
                 </div>
             </div>
         </div>
+        <ng-template #removerModal let-removerModal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Remover postagem</h4>
+                <button type="button" class="btn-close" (click)="removerModal.dismiss()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formRemoverConteudo" class="d-flex flex-column justify-content-center w-75">
+                    <p class="text-nowrap my-0">Para confirmar a remoção do conteudo "{{postagem.titulo}}" digite:</p>
+					<p class="mt-0 mb-3"><i><strong>{{textoExclusao}}</strong></i></p>
+					<input formControlName="confirmacao"  type="text" class="form-control mt-1" id="confirmacao" [placeholder]="textoExclusao">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="removerModal.dismiss()">Cancelar</button>
+                <button type="button" class="btn btn-success" (click)="removerModal.close()">Confirmar</button>
+            </div>
+        </ng-template>
+
     </div>
 </div>
 
