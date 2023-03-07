@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { faFile, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapse, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Anexo } from 'src/app/models/anexoModel';
 import { Classe } from 'src/app/models/classeModel';
@@ -17,6 +17,7 @@ export class PostagensComponent implements OnInit {
   @Input() funcao = 0
   @Input() classe: Classe = new Classe("", "", [], [])
   public iconeArquivo = faFile
+  public iconRemoverArquivo = faWindowClose
   public formAdicionarConteudo: FormGroup
   public postagens: Postagem[] = []
   public anexos: Anexo[] = []
@@ -48,6 +49,16 @@ export class PostagensComponent implements OnInit {
 
   carregarAnexos(idPostagem: string) {
     this.httpService.getAnexos(idPostagem).subscribe((result) => this.anexos = result)
+  }
+
+  removerAnexo(index: number) {
+    let arquivosAtualizados: File[] = []
+    this.arquivos.forEach((arquivo, arquivoIndex) => {
+      if (arquivoIndex !== index) {
+        arquivosAtualizados.push(arquivo)
+      }
+    });
+    this.arquivos = arquivosAtualizados
   }
 
   downloadArquivo(id: string, nome: string) {

@@ -51,8 +51,13 @@
                 <label for="anexos">Anexos</label>
                 <input formControlName="anexos" type="file" multiple class="form-control mt-1" id="anexos" (change)="alteracaoArquivos($event)">
             </div>
-            <div *ngFor="let arquivo of arquivos" class="form-group mb-3">
-                <p>{{arquivo.name}}</p>
+            <div *ngFor="let arquivo of arquivos; index as indexOfelement;" class="my-1">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between">
+                        <span class="text-primary mx-2">{{arquivo.name}}</span>
+                        <fa-icon role="button" [icon]="iconRemoverArquivo" size="lg" (click)="removerAnexo(indexOfelement)"></fa-icon>
+                    </div>
+                </div>
             </div>
         </form>
 	</div>

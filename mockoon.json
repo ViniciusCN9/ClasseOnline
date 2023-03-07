@@ -1,0 +1,218 @@
+{
+  "uuid": "2ee1ce40-b3c1-45d3-917c-23b5d3899ddd",
+  "lastMigration": 27,
+  "name": "Mockoon",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "05e0ff0f-de44-4049-ac65-5f0effe7b89d",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "api/auth/login",
+      "responses": [
+        {
+          "uuid": "e867ec9d-5be2-4484-949a-5d84345a11cb",
+          "body": "{\n  \"sucesso\": true,\n  \"usuario\": \"professor1\",\n  \"funcao\": 1,\n  \"token\": \"token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "08a4a081-6e9d-4252-be05-097b065fbdde",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/classe",
+      "responses": [
+        {
+          "uuid": "8bff56a6-799e-4b55-88bb-8752ab11b5ab",
+          "body": "[\n  {\n    \"codigo\": \"apxm-slif-hwyu-nfps\",\n    \"nome\": \"FÍSICA\",\n    \"postagens\": [\n      \"9d609f4f-44e2-47d5-8473-a98482f96c71\"\n    ],\n    \"atividades\": []\n  },\n  {\n    \"codigo\": \"lonv-imjn-awum-udiw\",\n    \"nome\": \"MATEMÁTICA\",\n    \"postagens\": [],\n    \"atividades\": []\n  },\n  {\n    \"codigo\": \"xrcw-mmml-qzem-vbir\",\n    \"nome\": \"CALCULO II\",\n    \"postagens\": [],\n    \"atividades\": []\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "116fe069-6b76-44a8-a1cb-11ccc6c14a4f",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/classe/apxm-slif-hwyu-nfps",
+      "responses": [
+        {
+          "uuid": "09b71b53-1105-4b61-bbd3-12d3de336064",
+          "body": "{\n  \"codigo\": \"apxm-slif-hwyu-nfps\",\n  \"nome\": \"FÍSICA\",\n  \"postagens\": [\n    \"9d609f4f-44e2-47d5-8473-a98482f96c71\"\n  ],\n  \"atividades\": []\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5202474c-3b1a-4835-a669-b107af9b3bca",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/postagem/apxm-slif-hwyu-nfps",
+      "responses": [
+        {
+          "uuid": "8ff0b3a1-b9ef-43bc-99df-8f96edcfb14e",
+          "body": "[\n  {\n    \"timestamp\": 1678045310,\n    \"usuario\": \"c04340ab-3aa7-476d-ae0f-35d155057abe\",\n    \"titulo\": \"Teste\",\n    \"texto\": \"Postagem de teste\",\n    \"anexos\": [\n      \"399afe07-2bcb-430c-8221-f8bcc1549d8f\"\n    ],\n    \"id\": \"9d609f4f-44e2-47d5-8473-a98482f96c71\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "ed87ecb8-786f-4d9b-923e-d1261a2887f3",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/anexo/9d609f4f-44e2-47d5-8473-a98482f96c71",
+      "responses": [
+        {
+          "uuid": "a6eca306-1aa7-49c4-9584-4e7aa5fac989",
+          "body": "[\r\n  {\r\n    \"nome\": \"TESTE.pdf\",\r\n    \"url\": \"C:\\\\dev\\\\ClasseOnline\\\\Backend\\\\Repository\\\\Mocks\\\\S3Bucket\\\\Postagens\\\\10d48ca8-dbc1-4d1f-a93b-c241bb69c0da.pdf\",\r\n    \"id\": \"399afe07-2bcb-430c-8221-f8bcc1549d8f\"\r\n  }\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "05e0ff0f-de44-4049-ac65-5f0effe7b89d"
+    },
+    {
+      "type": "route",
+      "uuid": "08a4a081-6e9d-4252-be05-097b065fbdde"
+    },
+    {
+      "type": "route",
+      "uuid": "116fe069-6b76-44a8-a1cb-11ccc6c14a4f"
+    },
+    {
+      "type": "route",
+      "uuid": "5202474c-3b1a-4835-a669-b107af9b3bca"
+    },
+    {
+      "type": "route",
+      "uuid": "ed87ecb8-786f-4d9b-923e-d1261a2887f3"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
