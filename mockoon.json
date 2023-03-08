@@ -147,6 +147,34 @@
       ],
       "enabled": true,
       "responseMode": null
+    },
+    {
+      "uuid": "7a4f8c7e-c320-4d70-948b-a58f7d4aed1f",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "api/postagem/apxm-slif-hwyu-nfps/9d609f4f-44e2-47d5-8473-a98482f96c71",
+      "responses": [
+        {
+          "uuid": "5cba8039-5e13-4c5a-a4d7-fed96d606ca3",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
     }
   ],
   "rootChildren": [
@@ -169,6 +197,10 @@
     {
       "type": "route",
       "uuid": "ed87ecb8-786f-4d9b-923e-d1261a2887f3"
+    },
+    {
+      "type": "route",
+      "uuid": "7a4f8c7e-c320-4d70-948b-a58f7d4aed1f"
     }
   ],
   "proxyMode": false,
