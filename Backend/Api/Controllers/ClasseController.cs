@@ -73,6 +73,25 @@ namespace Api.Controllers
             }
         }
 
+        [HttpPost("registrar/{codigo}")]
+        [Authorize(Roles = "ALUNO")]
+        public IActionResult RegistrarAluno([FromRoute] string codigo)
+        {
+            try
+            {
+                var usuarioId = Guid.Parse(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
+                var response = _classeService.RegistrarAluno(codigo, usuarioId);
+                if (!response)
+                    return BadRequest(response);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("{codigo}/{nome}")]
         [Authorize(Roles = "PROFESSOR")]
         public IActionResult UpdateClasse([FromRoute] string codigo, [FromRoute] string nome)

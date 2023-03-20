@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -63,12 +64,13 @@ namespace Api.Controllers
 
         [HttpPost]
         [Authorize(Roles = "PROFESSOR")]
-        public IActionResult PostAnexo(IFormFile arquivo)
+        public async Task<IActionResult> UploadAnexoAsync()
         {
             try
             {
-                _anexoService.AdicionarAnexo(arquivo);
-                return Ok();
+                var arquivos = Request.Form.Files;
+                var anexos = await _anexoService.AdicionarAnexo(arquivos);
+                return Ok(anexos);
             }
             catch (Exception ex)
             {

@@ -7,6 +7,7 @@ import { NotifierService } from 'angular-notifier';
 import { Anexo } from 'src/app/models/anexoModel';
 import { Classe } from 'src/app/models/classeModel';
 import { Postagem } from 'src/app/models/postagemModel';
+import { PostagemRequest } from 'src/app/models/postagemRequestModel';
 import { HttpService } from 'src/app/service/http.service';
 
 @Component({
@@ -23,15 +24,13 @@ export class PostagensComponent implements OnInit {
   public formRemoverConteudo: FormGroup
   public textoExclusao = "excluir permanentemente"
   public postagens: Postagem[] = []
-  public anexos: Anexo[] = []
-  public exibirAnexos = false
+  public esconderAnexos = false
   public arquivos: File[] = [];
 
   constructor(private notifierService: NotifierService, private modalService: NgbModal, private httpService: HttpService, private formBuilder: FormBuilder) {
     this.formAdicionarConteudo = this.formBuilder.group({
       titulo: [""],
-      texto: [""],
-      anexos: [""]
+      texto: [""]
     })
     this.formRemoverConteudo = this.formBuilder.group({
       confirmacao: [""]
@@ -47,26 +46,60 @@ export class PostagensComponent implements OnInit {
   }
 
   adicionarConteudo(adicionarModal: any) {
-    this.modalService.open(adicionarModal)
-  }
+    try {
+      this.modalService.open(adicionarModal).result.then(
+        () => {
+          const formData = new FormData()
+          this.arquivos.forEach(arquivo => formData.append('files', arquivo))
+          this.httpService.postAnexo(formData).subscribe(
+            result => {
+              let idAnexos: string[] = [];
+              result.forEach(anexo => { idAnexos.push(anexo.id); console.log(anexo) })
 
-  removerConteudo(removerModal:any, id: string) {
-    this.modalService.open(removerModal).result.then(
-      () => {
-        if (this.formRemoverConteudo.get("confirmacao")?.value !== this.textoExclusao) {
-          this.notifierService.notify("error", "Texto de confirmação inválido!")
-        } else {
-          this.httpService.deletePostagem(this.classe.codigo, id).subscribe(
-            () => {
-              this.carregarPostagens()
-              this.notifierService.notify("success", "Postagem removida com sucesso!")
+              let postagemRequest = new PostagemRequest(this.formAdicionarConteudo.get('titulo')?.value,
+                this.formAdicionarConteudo.get('texto')?.value, idAnexos)
+              this.httpService.postPostagem(this.classe.codigo, postagemRequest).subscribe(
+                () => { this.notifierService.notify("success", "Conteúdo adicionado com sucesso!"); location.reload() },
+                () => this.notifierService.notify("error", "Erro ao adicionar conteúdo")
+              )
             },
-            () => this.notifierService.notify("error", "Erro ao remover postagem!")
+            () => this.notifierService.notify("error", "Erro ao adicionar anexos")
           )
         }
-      }
-    )
-    console.log(`${id} - ${this.classe.codigo}`)
+      )
+    }
+    finally {
+      this.arquivos = []
+      this.formAdicionarConteudo.reset();
+    }
+  }
+
+  removerConteudo(removerModal: any, postagem: Postagem) {
+    try {
+      this.modalService.open(removerModal).result.then(
+        () => {
+          if (this.formRemoverConteudo.get("confirmacao")?.value !== this.textoExclusao) {
+            this.notifierService.notify("error", "Texto de confirmação inválido!")
+          } else {
+            if (postagem.anexos.length > 0) {
+              postagem.anexos.forEach(idAnexo => {
+                this.httpService.deleteAnexo(idAnexo).subscribe()
+              })
+            }
+            this.httpService.deletePostagem(this.classe.codigo, postagem.id).subscribe(
+              () => {
+                this.carregarPostagens()
+                this.notifierService.notify("success", "Postagem removida com sucesso!")
+              },
+              () => this.notifierService.notify("error", "Erro ao remover postagem!")
+            )
+          }
+        }
+      )
+    }
+    finally {
+      this.formRemoverConteudo.reset()
+    }
   }
 
   alteracaoArquivos(evento: any) {
@@ -77,7 +110,23 @@ export class PostagensComponent implements OnInit {
   }
 
   carregarAnexos(idPostagem: string) {
-    this.httpService.getAnexos(idPostagem).subscribe((result) => this.anexos = result)
+    this.httpService.getAnexos(idPostagem).subscribe(
+      (result) => result.forEach(
+        anexo => {
+          this.postagens.forEach(postagem => {
+            if (postagem.id === idPostagem) {
+              postagem.arquivos.push(anexo)
+            }
+          })
+        }
+      )
+    )
+  }
+
+  limparAnexos() {
+    this.postagens.forEach(postagem => {
+      postagem.arquivos = []
+    })
   }
 
   removerAnexo(index: number) {

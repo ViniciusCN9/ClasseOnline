@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Models.Entities;
 
@@ -9,7 +10,7 @@ namespace Service.Interfaces
     {
         List<Anexo> CarregarAnexos(Guid idPostagem);
         Anexo CarregarAnexo(Guid id);
-        void AdicionarAnexo(IFormFile arquivo);
+        Task<List<Anexo>> AdicionarAnexo(IFormFileCollection arquivos);
         void RemoverAnexo(Guid id);
     }
 }

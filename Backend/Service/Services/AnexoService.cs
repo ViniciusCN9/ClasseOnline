@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Models.Entities;
@@ -32,22 +33,28 @@ namespace Service.Services
 
         public Anexo CarregarAnexo(Guid id) => _anexoRepository.CarregarAnexo(id);
 
-        public async void AdicionarAnexo(IFormFile arquivo)
+        public async Task<List<Anexo>> AdicionarAnexo(IFormFileCollection arquivos)
         {
-            var nome = arquivo.FileName;
-            var url = Path.Combine(caminho, $"{Guid.NewGuid().ToString()}{Path.GetExtension(arquivo.FileName)}");
-            using (var stream = File.Create(url))
+            var anexos = new List<Anexo>();
+            foreach (var arquivo in arquivos)
             {
-                await arquivo.CopyToAsync(stream);
+                var nome = arquivo.FileName;
+                var url = Path.Combine(caminho, $"{Guid.NewGuid().ToString()}{Path.GetExtension(arquivo.FileName)}");
+                using (var stream = File.Create(url))
+                {
+                    await arquivo.CopyToAsync(stream);
+                }
+
+                var novoAnexo = new Anexo()
+                {
+                    Nome = nome,
+                    Url = url
+                };
+
+                _anexoRepository.AdicionarAnexo(novoAnexo);
+                anexos.Add(novoAnexo);
             }
-
-            var novoAnexo = new Anexo()
-            {
-                Nome = nome,
-                Url = url
-            };
-
-            _anexoRepository.AdicionarAnexo(novoAnexo);
+            return anexos;
         }
 
         public void RemoverAnexo(Guid id)

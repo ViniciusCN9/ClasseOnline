@@ -3,12 +3,23 @@
     <div class="d-flex justify-content-between">
         <div>
             <button [routerLink]="['/home']" class="btn btn-dark">Voltar</button>
-            <button class="btn btn-dark ms-2" (click)="exibirPostagens()">Postagens</button>
-            <button class="btn btn-dark ms-2" (click)="exibirAtividades()">Atividades</button>
+            <button (click)="exibirPostagens()" [classList]="exibicao === 1 ? 'btn btn-secondary ms-2' : 'btn btn-dark ms-2'">Postagens</button>
+            <button (click)="exibirAtividades()" [classList]="exibicao === 2 ? 'btn btn-secondary ms-2' : 'btn btn-dark ms-2'">Atividades</button>
         </div>
         <h4>{{classe.nome}}</h4>
     </div>
     <hr class="w-100">
     <app-postagens *ngIf="exibicao == 1" [funcao]="funcao" [classe]="classe"></app-postagens>
-    <!-- <app-atividades *ngIf="exibicao == 2" [funcao]="funcao" [classe]="classe"></app-atividades> -->
+    <app-atividades *ngIf="exibicao == 2" [funcao]="funcao" [classe]="classe"></app-atividades>
+    <div *ngIf="exibicao == 0 && funcao == 1">
+        <h5>
+            Compartilhe o código abaixo com seus alunos para que possam ingressar na sala:
+        </h5>
+        <div class="d-flex justify-content-center mt-3">
+            <div class="alert alert-primary d-inline-flex justify-content-center align-items-center">
+                <h4><strong>{{codigo}}</strong></h4>
+                <fa-icon role="button" class="ms-5 rounded border border-dark p-2 bg-light" [icon]="iconeCopiar" size="lg" (click)="copiarCodigo()"></fa-icon>
+            </div>
+        </div>
+    </div>
 </div>

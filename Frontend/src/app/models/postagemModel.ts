@@ -1,3 +1,5 @@
+import { Anexo } from "./anexoModel";
+
 export class Postagem {
     constructor(
         public id: string,
@@ -5,6 +7,9 @@ export class Postagem {
         public usuario: string,
         public titulo: string,
         public texto: string,
-        public anexos: string[]
-    ) { }
+        public anexos: string[],
+        public arquivos: Anexo[] // Atributo exclusivo da interface
+    ) {
+        this.arquivos = []
+    }
 }

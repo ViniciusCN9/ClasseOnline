@@ -34,6 +34,10 @@ export class HttpService {
         return this.httpClient.post<Classe>(`${this.API_URL}/${this.CLASSE_ROUTE}/${nome}`, {}, this.getHeaders())
     }
 
+    registrarAluno(codigo: string) {
+        return this.httpClient.post<boolean>(`${this.API_URL}/${this.CLASSE_ROUTE}/registrar/${codigo}`, {}, this.getHeaders())
+    }
+
     updateClasse(codigo: string, nome: string) {
         return this.httpClient.put(`${this.API_URL}/${this.CLASSE_ROUTE}/${codigo}/${nome}`, {}, this.getHeaders())
     }
@@ -58,12 +62,12 @@ export class HttpService {
         return this.httpClient.get<Anexo[]>(`${this.API_URL}/${this.ANEXO_ROUTE}/${idPostagem}`, this.getHeaders());
     }
 
-    postAnexo(arquivo: FormData) {
-        return this.httpClient.post(`${this.API_URL}/${this.ANEXO_ROUTE}`, arquivo, this.getHeaders())
+    postAnexo(arquivos: FormData) {
+        return this.httpClient.post<Anexo[]>(`${this.API_URL}/${this.ANEXO_ROUTE}`, arquivos, this.getHeaders())
     }
 
     deleteAnexo(id: string) {
-        return this.httpClient.post(`${this.API_URL}/${this.ANEXO_ROUTE}/${id}`, this.getHeaders())
+        return this.httpClient.delete(`${this.API_URL}/${this.ANEXO_ROUTE}/${id}`, this.getHeaders())
     }
 
     downloadAnexo(id: string) {

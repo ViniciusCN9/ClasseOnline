@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NotifierModule } from 'angular-notifier';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { AtividadesComponent } from './pages/atividades/atividades.component';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    NgbCollapseModule,
     NotifierModule.withConfig({ position: { horizontal: { position: 'right' } } })
   ],
   providers: [],

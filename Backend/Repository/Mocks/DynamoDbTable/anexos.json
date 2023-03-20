@@ -1,7 +1,17 @@
 [
   {
-    "Nome": "TESTE.pdf",
-    "Url": "C:\\dev\\ClasseOnline\\Backend\\Repository\\Mocks\\S3Bucket\\Postagens\\10d48ca8-dbc1-4d1f-a93b-c241bb69c0da.pdf",
-    "Id": "399afe07-2bcb-430c-8221-f8bcc1549d8f"
+    "Nome": "TESTE.rar",
+    "Url": "C:\\dev\\ClasseOnline\\Backend\\Repository\\Mocks\\S3Bucket\\Postagens\\90f3b2fb-acf8-475a-b682-8644bb76b096.rar",
+    "Id": "dbf55b30-6e05-4c6e-b45d-f9be5bc08e85"
+  },
+  {
+    "Nome": "TESTE.txt",
+    "Url": "C:\\dev\\ClasseOnline\\Backend\\Repository\\Mocks\\S3Bucket\\Postagens\\bdfe75db-6eb6-44fe-8845-7e0009d0f46a.txt",
+    "Id": "24fb9f8c-b3a4-48b8-ac6f-01496866c343"
+  },
+  {
+    "Nome": "TESTE.txt",
+    "Url": "C:\\dev\\ClasseOnline\\Backend\\Repository\\Mocks\\S3Bucket\\Postagens\\604860b9-d4c6-4c24-a572-8abee71be21e.txt",
+    "Id": "c43f0f3e-3e8e-496a-bc0d-a9ebe36046fb"
   }
 ]

@@ -44,6 +44,15 @@ namespace Service.Services
             return classe;
         }
 
+        public bool RegistrarAluno(string codigo, Guid usuarioId)
+        {
+            if (_usuarioRepository.VerificarClasse(codigo, usuarioId))
+                return false;
+
+            _usuarioRepository.RegistrarClasse(codigo, usuarioId);
+            return true;
+        }
+
         public void AtualizarClasse(string codigo, string nome)
         {
             var classe = _classeRepository.CarregarClasse(codigo);

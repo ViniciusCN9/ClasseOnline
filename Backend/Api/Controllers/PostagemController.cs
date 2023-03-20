@@ -1,5 +1,8 @@
 using System;
+using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Requests;
 using Service.Interfaces;
@@ -11,9 +14,11 @@ namespace Api.Controllers
     public class PostagemController : ControllerBase
     {
         private readonly IPostagemService _postagemService;
+        private readonly IHttpContextAccessor _accessor;
 
-        public PostagemController(IPostagemService postagemService)
+        public PostagemController(IHttpContextAccessor accessor, IPostagemService postagemService)
         {
+            _accessor = accessor;
             _postagemService = postagemService;
         }
 
@@ -38,6 +43,9 @@ namespace Api.Controllers
         {
             try
             {
+                var usuarioId = Guid.Parse(_accessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Sid).Value);
+                request.Usuario = usuarioId;
+
                 _postagemService.AdicionarPostagem(request, codigo);
                 return Ok();
             }

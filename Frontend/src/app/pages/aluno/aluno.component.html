@@ -1,1 +1,35 @@
-<p>aluno works!</p>
+<div class="container mt-4">
+    <button class="btn btn-primary" (click)="entrarClasseModal(entrarModal)">Entrar em classe</button>
+    <hr class="w-100">
+    <div *ngIf="classes.length == 0" class="alert alert-warning" id="alerta" role="alert">
+        Nenhuma classe encontrada!
+    </div>
+	<div class="list-group">
+		<div *ngFor="let classe of classes" class="list-group-item flex-column align-items-start">
+			<div class="d-flex w-100 justify-content-between align-items-center p-1">
+				<a [routerLink]="['/classe', classe.codigo]" class="text-decoration-none text-dark">
+					<h5 class="mb-1">{{classe.nome}}</h5>
+				</a>
+			</div>
+        </div>
+    </div>
+</div>
+
+<ng-template #entrarModal let-entrarModal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Entrar em classe</h4>
+		<button type="button" class="btn-close" (click)="entrarModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="formEntrarClasse" class="d-flex flex-column justify-content-center w-75">
+            <div class="form-group mb-3">
+                <label for="codigo">Código</label>
+                <input formControlName="codigo" type="text" class="form-control mt-1" id="codigo" placeholder="Ex. xxxx-xxxx-xxxx-xxxx">
+            </div>
+        </form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" (click)="entrarModal.dismiss()">Cancelar</button>
+		<button type="button" class="btn btn-success" (click)="entrarModal.close()">Entrar</button>
+	</div>
+</ng-template>
